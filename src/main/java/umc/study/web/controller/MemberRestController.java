@@ -30,7 +30,7 @@ public class MemberRestController {
     @PostMapping("/{memberId}")
     public ApiResponse<MemberResponseDTO.AddMemberMissionResultDTO> addMemberMission(@PathVariable(name = "memberId") @ExistMember Long memberId,
                                                                                      @RequestParam(name = "missionId") @ExistMission Long missionId
-                                                                                     ){
+    ){
         MemberMission memberMission = memberCommandService.addMemberMission(memberId, missionId);
         return ApiResponse.onSuccess(MemberMissionConverter.toAddMemberMissionResultDTO(memberMission));
     }
