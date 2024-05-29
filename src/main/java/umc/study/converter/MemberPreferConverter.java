@@ -18,4 +18,3 @@ public class MemberPreferConverter {
                 ).collect(Collectors.toList());
     }
 }
-
