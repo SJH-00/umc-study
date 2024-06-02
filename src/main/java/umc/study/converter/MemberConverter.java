@@ -2,6 +2,7 @@ package umc.study.converter;
 
 import org.springframework.data.domain.Page;
 import umc.study.domain.Member;
+import umc.study.domain.Mission;
 import umc.study.domain.Review;
 import umc.study.domain.enums.Gender;
 import umc.study.domain.mapping.MemberMission;
@@ -69,6 +70,30 @@ public class MemberConverter {
                 .totalElements(reviewList.getTotalElements())
                 .listSize(reviewPreViewDTOList.size())
                 .reviewList(reviewPreViewDTOList)
+                .build();
+    }
+
+    public static MemberResponseDTO.MissionPreviewDTO missionPreviewDTO(Mission mission){
+        return MemberResponseDTO.MissionPreviewDTO.builder()
+                .storeName(mission.getStore().getName())
+                .reward(mission.getReward())
+                .missionSpec(mission.getMissionSpec())
+                .deadline(mission.getDeadline())
+                .build();
+    }
+
+    public static MemberResponseDTO.MissionPreviewListDTO missionPreviewListDTO(Page<Mission> missionList) {
+
+        List<MemberResponseDTO.MissionPreviewDTO> missionPreviewDTOList = missionList.stream()
+                .map(MemberConverter::missionPreviewDTO).collect(Collectors.toList());
+
+        return MemberResponseDTO.MissionPreviewListDTO.builder()
+                .isLast(missionList.isLast())
+                .isFirst(missionList.isFirst())
+                .totalPage(missionList.getTotalPages())
+                .totalElements(missionList.getTotalElements())
+                .listSize(missionPreviewDTOList.size())
+                .missionList(missionPreviewDTOList)
                 .build();
     }
 }

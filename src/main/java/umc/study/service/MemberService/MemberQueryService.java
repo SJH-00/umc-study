@@ -2,6 +2,7 @@ package umc.study.service.MemberService;
 
 import org.springframework.data.domain.Page;
 import umc.study.domain.Member;
+import umc.study.domain.Mission;
 import umc.study.domain.Review;
 
 import java.util.Optional;
@@ -10,4 +11,5 @@ public interface MemberQueryService {
 
     Optional<Member> findMember(Long id);
     Page<Review> getReviewList(Long memberId, Integer page);
+    Page<Mission> getMissionList(Long memberId, Integer page);
 }
